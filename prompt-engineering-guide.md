@@ -68,15 +68,40 @@ Here’s an example prompt using all four elements:
 You don’t need to include all four in every prompt, but incorporating **at least two or three** can significantly improve AI outputs.  
 
 ### **Best Practices for Prompting AI Models**  
-Here are some proven techniques to refine your prompts and get the best results:  
+Refining your prompts can significantly improve the accuracy and relevance of AI-generated responses. Below are key best practices to help you craft clear and effective prompts:  
 
-1. **Use natural language** – Write as if you’re speaking to a person. Express complete thoughts.  
-2. **Be specific** – Clearly state the task (e.g., "summarize," "rewrite," "translate"). Provide relevant details.  
-3. **Be concise** – Avoid unnecessary complexity. Use clear and direct language.  
-4. **Iterate and refine** – If the output isn't ideal, adjust the prompt and try again.  
-5. **Leverage existing documents** – If available, provide AI with relevant context from your own files.  
-6. **Use AI as a prompt editor** – Some models can improve your prompts when given the instruction:  
-   > *Make this a power prompt: [original prompt text].*  
+1. **Use Natural Language** – Write as if you're speaking to a person. Use complete sentences and clear instructions. AI models are trained on natural language, so making your prompts feel conversational can lead to better results.  
+   - ✅ *"Rewrite the following paragraph in a more professional tone."*  
+   - ❌ *"Make this sound better."*  
+
+2. **Be Specific** – Leave as little to interpretation as possible. Clearly state the task (e.g., "summarize," "rewrite," "translate") and provide relevant details. If you need a response in a certain format, say so explicitly.  
+   - ✅ *"Summarize the following article in three bullet points."*  
+   - ❌ *"What do you think about this article?"*  
+
+3. **Be Descriptive** – Use analogies, comparisons, or concrete descriptions when helpful. This is especially useful for creative tasks or when instructing the AI to follow a specific style.  
+   - ✅ *"Write a product description as if you were a luxury brand marketer."*  
+   - ❌ *"Describe this product."*  
+
+4. **Order Matters** – The sequence in which you present information can impact the response. Whether you put instructions before the content ("Summarize the following…") or after ("Summarize the above…") can lead to different results. This also applies to the order of multiple examples—more recent examples tend to have a stronger influence.  
+   - ✅ *"Here are three examples of strong introductions. Write a similar one for the topic below."*  
+   - ❌ *"Write an introduction based on the following examples."*  
+
+5. **Double Down on Key Instructions** – Sometimes repeating key instructions can improve the AI’s adherence to them. You can reinforce important details by stating them before and after your primary content or using an instruction and a cue.  
+   - ✅ *"Rewrite the following to be concise and formal. Keep it under 50 words. Again, ensure it is under 50 words."*  
+   - ❌ *"Rewrite this to be more formal."*  
+
+6. **Give the Model an "Out"** – If the AI cannot confidently complete a task, it's helpful to provide an alternative path rather than letting it generate an inaccurate response. Adding a fallback instruction can reduce misinformation.  
+   - ✅ *"If the information is not available, respond with ‘Not Found.’"*  
+   - ❌ *"Find the answer to this question."*  
+
+7. **Iterate and Refine** – If the output isn't ideal, tweak the wording, add details, or break down complex requests. Iteration is key to improving results.  
+   - *"Revise the output to be more engaging and add a call to action."*  
+
+8. **Leverage Existing Documents** – If you have relevant data or context, provide it in your prompt. This can make responses more accurate and aligned with your needs.  
+   - *"Based on the provided document, summarize the key points in three sentences."*  
+
+9. **Use AI as a Prompt Editor** – If you’re unsure whether your prompt is well-structured, you can ask AI to optimize it for better results.  
+   - *"Improve this prompt for clarity and specificity: [original prompt text]."* 
 
 ### **Understanding How AI Models Process Prompts**  
 AI models generate responses based on **probabilities**. They predict the **most likely sequence of words** based on the input provided.  
@@ -98,3 +123,32 @@ Similarly, if you provide a famous literary opening:
 > *...who ruled with kindness and fairness, beloved by his people for his wisdom and courage.*  
 
 AI models **don’t “understand” prompts** in the human sense—they simply predict **the most likely response** based on patterns learned from vast amounts of data. This is why **clarity and precision** in prompt design are crucial.  
+
+## **Prompting techniques**
+
+### **Few-Shot: Guiding AI with Examples**  
+
+In-Context Learning (ICL) allows AI models to improve their responses by using provided examples as guidance. The number of examples, or "shots," plays a crucial role in shaping how well the model understands and executes a task.
+
+#### **Types of Shot-Based Prompting**  
+- **Zero-Shot** – No examples, relies solely on pre-trained knowledge.  
+- **One-Shot** – A single example clarifies the task.  
+- **Few-Shot** – Multiple examples guide the model for better accuracy.  
+
+#### **Example: Categorizing Customer Messages**  
+
+> Assign a category to each message:  
+> - "I forgot my login details." → *Account Support*  
+> - "The app crashes when uploading files." → *Technical Issue*  
+> - "Can I change my delivery address?" → **{category}**  
+
+#### **Few-Shot Learning in Conversations**  
+
+**User:** "How do I stay motivated to exercise?"  
+**AI:** "Set small goals and track progress."  
+
+**User:** "Any tips for managing stress?"  
+**AI:** "Try mindfulness, regular exercise, and relaxation."  
+
+Providing structured examples enhances AI accuracy, making responses more relevant and reliable.
+
