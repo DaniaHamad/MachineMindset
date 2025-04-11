@@ -124,25 +124,27 @@ Similarly, if you provide a famous literary opening:
 
 AI models **don’t “understand” prompts** in the human sense—they simply predict **the most likely response** based on patterns learned from vast amounts of data. This is why **clarity and precision** in prompt design are crucial.  
 
-## **Prompting techniques**
+---
 
-### **Few-Shot: Guiding AI with Examples**  
+# **Prompting techniques**
+
+## **Few-Shot: Guiding AI with Examples**  
 
 In-Context Learning (ICL) allows AI models to improve their responses by using provided examples as guidance. The number of examples, or "shots," plays a crucial role in shaping how well the model understands and executes a task.
 
-#### **Types of Shot-Based Prompting**  
+### **Types of Shot-Based Prompting**  
 - **Zero-Shot** – No examples, relies solely on pre-trained knowledge.  
 - **One-Shot** – A single example clarifies the task.  
 - **Few-Shot** – Multiple examples guide the model for better accuracy.  
 
-#### **Example: Categorizing Customer Messages**  
+### **Example: Categorizing Customer Messages**  
 
 > Assign a category to each message:  
 > - "I forgot my login details." → *Account Support*  
 > - "The app crashes when uploading files." → *Technical Issue*  
 > - "Can I change my delivery address?" → **{category}**  
 
-#### **Few-Shot Learning in Conversations**  
+### **Few-Shot Learning in Conversations**  
 
 **User:** "How do I stay motivated to exercise?"  
 **AI:** "Set small goals and track progress."  
@@ -151,4 +153,143 @@ In-Context Learning (ICL) allows AI models to improve their responses by using p
 **AI:** "Try mindfulness, regular exercise, and relaxation."  
 
 Providing structured examples enhances AI accuracy, making responses more relevant and reliable.
+
+---
+
+## Chain of Thought Prompting (CoT)
+
+Chain of Thought (CoT) prompting is a technique in prompt engineering that guides a language model to solve complex problems through **step-by-step reasoning**. Rather than jumping directly to an answer, the model is encouraged to “think out loud,” creating **intermediate reasoning steps** that lead to more **accurate**, **explainable**, and **robust** responses.
+
+
+
+### What It Does
+
+CoT prompting enables **logical flow** in model responses, mimicking how humans naturally break down and solve problems. It is especially useful in:
+
+- **Math** and **logic problems**  
+- **Conceptual analysis**  
+- **Scenario planning**  
+- **Structured decision-making**
+
+
+
+### How It Works
+
+Instead of a direct prompt:
+
+> What are the pros and cons of working from home?
+
+You guide the model step-by-step:
+
+> 1. List three reasons why people prefer working from home.  
+> 2. Explain how each reason benefits the individual and/or organization.  
+> 3. Identify three challenges of working from home.  
+> 4. Suggest one solution for each challenge.
+
+This structured format helps the model explore the topic in depth.
+
+
+
+### Example: Math Reasoning
+
+> The odd numbers in this group add up to an **even** number: 15, 32, 5, 13, 82, 7, 1.  
+> A:  
+> Step 1: Identify **odd numbers** → 15, 5, 13, 7, 1  
+> Step 2: Add them → 15 + 5 + 13 + 7 + 1 = **41**  
+> Step 3: Is 41 even? → **No**  
+> Answer: **False**
+
+
+
+### Prompting Styles
+
+#### Zero-shot CoT
+
+You simply instruct the model to “think step-by-step” without examples.
+
+> What is 17 + 24 × 2? **Think step-by-step.**  
+> Step 1: 24 × 2 = 48  
+> Step 2: 17 + 48 = 65  
+> Answer: **65**
+
+#### Few-shot CoT
+
+You include one or more examples to guide the model.
+
+> Q: Is 81 an even number?  
+> A: 81 ÷ 2 = 40.5 → **Remainder** → Not even → Answer: **No**  
+>   
+> Q: Is 58 an even number?  
+> A: 58 ÷ 2 = 29 → **No remainder** → Even → Answer: **Yes**
+
+---
+
+### Variants
+
+**Auto-CoT**  
+Model generates its own reasoning without being shown examples.
+
+> Prompt: Is 49 a **prime number**? Think step-by-step.  
+> A: 49 is an **odd number**. Let's check if it's divisible by any number other than 1 and itself.  
+> 49 ÷ 7 = 7 → It is divisible.  
+> Therefore, 49 is **not a prime number**.  
+> Answer: **No**
+
+---
+
+**Contrastive CoT**  
+Model creates **multiple reasoning paths** and selects the most accurate.
+
+> Prompt: What’s heavier: a kilogram of steel or a kilogram of feathers? **Compare carefully.**  
+> Path A: Steel is **denser** and feels heavier, so it must weigh more.  
+> Path B: A **kilogram** is a unit of weight, so both weigh the same.  
+> Final reasoning: Despite steel being denser, a kilogram of steel and a kilogram of feathers weigh the same.  
+> Answer: **They weigh the same.**
+
+---
+
+**Tabular CoT (Tab-CoT)**  
+Applies CoT to structured data, like **tables** or spreadsheets.
+
+> Prompt: Based on the table below, which product had the highest **increase in sales** between Q1 and Q2?  
+> | Product | Q1 Sales | Q2 Sales |  
+> |---------|----------|----------|  
+> | Alpha   | 1000     | 1400     |  
+> | Beta    | 1500     | 1800     |  
+> | Gamma   | 900      | 1500     |  
+
+> Step 1: **Calculate increase:**  
+> Alpha → 1400 - 1000 = **400**  
+> Beta → 1800 - 1500 = **300**  
+> Gamma → 1500 - 900 = **600**  
+> Step 2: Identify highest increase → **Gamma (600)**  
+> Answer: **Gamma**
+
+---
+
+**Memory-of-Thought (MoT)**  
+Model recalls and builds on reasoning from earlier in the session.
+
+> Previous prompt: List three challenges of launching a **startup**.  
+> Response: 1. **Limited funding**, 2. **Market competition**, 3. **Hiring the right team**  
+>  
+> Current prompt: Based on the challenges you listed earlier, how can founders address the **hiring issue**?  
+> A: Referring to challenge #3 (Hiring the right team), founders can improve by offering **equity**, building a strong **company mission**, and networking in relevant **industry events**.
+
+---
+
+### When to Use CoT
+
+Use Chain of Thought prompting when:
+
+- Problems involve **multi-step logic**  
+- Answers are not purely **factual**  
+- You want the model to “show its work”  
+- **Transparency** and **traceability** are important  
+
+> Tip: CoT works best with **larger language models** due to its **emergent reasoning ability**.
+
+
+
+
 
