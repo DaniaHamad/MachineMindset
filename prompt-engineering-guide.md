@@ -226,14 +226,29 @@ You include one or more examples to guide the model.
 
 ### Variants
 
-**Auto-CoT**  
-Model generates its own reasoning without being shown examples.
+**Auto-CoT**
 
-> Prompt: Is 49 a **prime number**? Think step-by-step.  
-> A: 49 is an **odd number**. Let's check if it's divisible by any number other than 1 and itself.  
-> 49 ÷ 7 = 7 → It is divisible.  
-> Therefore, 49 is **not a prime number**.  
-> Answer: **No**
+Improves model reasoning by automatically generating step-by-step demonstrations—no manual examples needed.
+
+Unlike **CoT**, which relies on hand-crafted reasoning examples, and **Zero-Shot CoT**, which simply tells the model to “think step-by-step” without providing any, **Auto-CoT** generates its own reasoning demonstrations using the model itself.
+
+It works in two stages:
+
+- **Clustering**: Groups similar questions using semantic embeddings.
+- **Generation**: Selects a sample from each group and uses Zero-Shot CoT to produce a reasoning chain.
+
+These chains are then reused as in-context examples for similar tasks.
+
+> **Prompt**: Is 49 a prime number? Think step-by-step.  
+> **Model (Auto-CoT)**:  
+> 49 is an odd number.  
+> Let's check if it's divisible by any number other than 1 and itself.  
+> 49 ÷ 7 = 7, so it is divisible.  
+> Therefore, 49 is **not** a prime number.  
+> **Answer**: No
+
+This approach combines the structure of CoT with the flexibility of Zero-Shot prompting, making it scalable and hands-free for generating useful reasoning examples.
+
 
 ---
 
