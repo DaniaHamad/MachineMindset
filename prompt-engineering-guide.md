@@ -1,4 +1,4 @@
-# Prompt Engineering: From Zero to Hero
+# Prompt Engineering Guide
 
 ## Purpose of This Guide
 This guide provides a **comprehensive introduction to prompt engineering**, whether you're a **casual user** looking to get precise responses from AI models or a **developer** aiming to fine-tune AI behavior. It covers everything from **basic principles** to **advanced techniques**, helping you craft effective prompts for **any AI model**, including large language models (LLMs), image generators, and other AI-driven systems.
@@ -19,8 +19,8 @@ Effective prompt design helps you:
 
 ### Mastering the Art of Prompting
 While there are structured approaches to writing effective prompts, **trial and refinement** play a key role in achieving optimal results. This guide will equip you with the knowledge to:
-- Understand **how different AI models process prompts**
-- Learn **best practices** for various types of AI systems
+- Write **clear and precise prompts** to guide AI systems towards accurate, contextually relevant outputs  
+- **Experiment with different strategies** to enhance reasoning, summarization, and generation tasks
 - Apply **structured techniques** to get the most out of AI
 
 By the end of this guide, you will have the expertise to **communicate effectively with AI models**, ensuring they deliver the results you need—whether for chat-based interactions, content generation, programming assistance, or creative applications.
@@ -289,6 +289,45 @@ Use Chain of Thought prompting when:
 
 > Tip: CoT works best with **larger language models** due to its **emergent reasoning ability**.
 
+---
+
+## Least-to-Most Prompting (LtM)
+
+**Least-to-Most Prompting** is a structured prompting technique that improves complex problem-solving by breaking a task into a series of simpler subproblems. The model is asked to identify these subproblems first, then solve them step by step—each step informed by the outcome of the previous one.
+
+This method builds on **Chain-of-Thought prompting** but goes further by explicitly feeding the answer from one subproblem into the next. It mirrors how humans approach challenges: **simplify first**, **solve gradually**.
+
+### What It Does
+
+Rather than solving a problem all at once, **LtM** first asks the model to:
+1. Break the problem into logical **subproblems**.
+2. Solve each subproblem **one by one**, using previous answers to inform the next.
+
+This approach improves **accuracy**, **clarity**, and **generalization**—especially for complex, multi-step tasks.
+
+
+### How It Works
+
+Let’s compare:
+
+**Direct prompt:**  
+> Can I return this item and use the credit for something else?
+
+**LtM prompt:**  
+> 1. When was the item purchased?  
+> 2. Is it within the return window?  
+> 3. How much store credit will the customer get?  
+> 4. Can this amount cover the cost of another item?
+
+By answering each subproblem sequentially, the model builds a reliable final answer.
+
+
+### Why Use Least-to-Most?
+
+Use **Least-to-Most Prompting** when:
+- The problem is **multi-step** or **compositional**
+- You want **higher accuracy** in complex reasoning tasks
+- Intermediate steps are helpful to explain or validate the outcome
 
 
 
